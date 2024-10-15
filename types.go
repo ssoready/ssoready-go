@@ -714,6 +714,8 @@ type Organization struct {
 	ID *string `json:"id,omitempty" url:"id,omitempty"`
 	// The environment this organization belongs to.
 	EnvironmentID *string `json:"environmentId,omitempty" url:"environmentId,omitempty"`
+	// An optional human-friendly name for this organization.
+	DisplayName *string `json:"displayName,omitempty" url:"displayName,omitempty"`
 	// An identifier you can attach to an organization. Meant to be used to correlate an SSOReady organization to your
 	// internal equivalent concept.
 	//
