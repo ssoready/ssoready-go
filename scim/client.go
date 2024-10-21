@@ -35,11 +35,11 @@ func NewClient(opts ...option.RequestOption) *Client {
 }
 
 // Gets a list of SCIM groups in a SCIM directory.
-func (c *Client) ListScimGroups(
+func (c *Client) ListSCIMGroups(
 	ctx context.Context,
-	request *ssoreadygo.ScimListScimGroupsRequest,
+	request *ssoreadygo.SCIMListSCIMGroupsRequest,
 	opts ...option.RequestOption,
-) (*ssoreadygo.ListScimGroupsResponse, error) {
+) (*ssoreadygo.ListSCIMGroupsResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://api.ssoready.com"
@@ -61,7 +61,7 @@ func (c *Client) ListScimGroups(
 
 	headers := core.MergeHeaders(c.header.Clone(), options.ToHeader())
 
-	var response *ssoreadygo.ListScimGroupsResponse
+	var response *ssoreadygo.ListSCIMGroupsResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -81,12 +81,12 @@ func (c *Client) ListScimGroups(
 }
 
 // Gets a SCIM group in a SCIM directory.
-func (c *Client) GetScimGroup(
+func (c *Client) GetSCIMGroup(
 	ctx context.Context,
 	// ID of the SCIM group to get.
 	id string,
 	opts ...option.RequestOption,
-) (*ssoreadygo.GetScimGroupResponse, error) {
+) (*ssoreadygo.GetSCIMGroupResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://api.ssoready.com"
@@ -100,7 +100,7 @@ func (c *Client) GetScimGroup(
 
 	headers := core.MergeHeaders(c.header.Clone(), options.ToHeader())
 
-	var response *ssoreadygo.GetScimGroupResponse
+	var response *ssoreadygo.GetSCIMGroupResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -120,11 +120,11 @@ func (c *Client) GetScimGroup(
 }
 
 // Gets a list of SCIM users in a SCIM directory.
-func (c *Client) ListScimUsers(
+func (c *Client) ListSCIMUsers(
 	ctx context.Context,
-	request *ssoreadygo.ScimListScimUsersRequest,
+	request *ssoreadygo.SCIMListSCIMUsersRequest,
 	opts ...option.RequestOption,
-) (*ssoreadygo.ListScimUsersResponse, error) {
+) (*ssoreadygo.ListSCIMUsersResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://api.ssoready.com"
@@ -146,7 +146,7 @@ func (c *Client) ListScimUsers(
 
 	headers := core.MergeHeaders(c.header.Clone(), options.ToHeader())
 
-	var response *ssoreadygo.ListScimUsersResponse
+	var response *ssoreadygo.ListSCIMUsersResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -166,12 +166,12 @@ func (c *Client) ListScimUsers(
 }
 
 // Gets a SCIM user.
-func (c *Client) GetScimUser(
+func (c *Client) GetSCIMUser(
 	ctx context.Context,
 	// ID of the SCIM user to get.
 	id string,
 	opts ...option.RequestOption,
-) (*ssoreadygo.GetScimUserResponse, error) {
+) (*ssoreadygo.GetSCIMUserResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://api.ssoready.com"
@@ -185,7 +185,7 @@ func (c *Client) GetScimUser(
 
 	headers := core.MergeHeaders(c.header.Clone(), options.ToHeader())
 
-	var response *ssoreadygo.GetScimUserResponse
+	var response *ssoreadygo.GetSCIMUserResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{

@@ -36,11 +36,11 @@ func NewClient(opts ...option.RequestOption) *Client {
 }
 
 // Gets a list of SCIM directories in an organization.
-func (c *Client) ListScimDirectories(
+func (c *Client) ListSCIMDirectories(
 	ctx context.Context,
-	request *management.ScimDirectoriesListScimDirectoriesRequest,
+	request *management.SCIMDirectoriesListSCIMDirectoriesRequest,
 	opts ...option.RequestOption,
-) (*ssoreadygo.ListScimDirectoriesResponse, error) {
+) (*ssoreadygo.ListSCIMDirectoriesResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://api.ssoready.com"
@@ -62,7 +62,7 @@ func (c *Client) ListScimDirectories(
 
 	headers := core.MergeHeaders(c.header.Clone(), options.ToHeader())
 
-	var response *ssoreadygo.ListScimDirectoriesResponse
+	var response *ssoreadygo.ListSCIMDirectoriesResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -82,11 +82,11 @@ func (c *Client) ListScimDirectories(
 }
 
 // Creates a SCIM directory.
-func (c *Client) CreateScimDirectory(
+func (c *Client) CreateSCIMDirectory(
 	ctx context.Context,
-	request *ssoreadygo.ScimDirectory,
+	request *ssoreadygo.SCIMDirectory,
 	opts ...option.RequestOption,
-) (*ssoreadygo.CreateScimDirectoryResponse, error) {
+) (*ssoreadygo.CreateSCIMDirectoryResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://api.ssoready.com"
@@ -101,7 +101,7 @@ func (c *Client) CreateScimDirectory(
 	headers := core.MergeHeaders(c.header.Clone(), options.ToHeader())
 	headers.Set("Content-Type", "application/json")
 
-	var response *ssoreadygo.CreateScimDirectoryResponse
+	var response *ssoreadygo.CreateSCIMDirectoryResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -122,12 +122,12 @@ func (c *Client) CreateScimDirectory(
 }
 
 // Gets a SCIM directory.
-func (c *Client) GetScimDirectory(
+func (c *Client) GetSCIMDirectory(
 	ctx context.Context,
 	// The ID of the SCIM directory.
 	id string,
 	opts ...option.RequestOption,
-) (*ssoreadygo.GetScimDirectoryResponse, error) {
+) (*ssoreadygo.GetSCIMDirectoryResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://api.ssoready.com"
@@ -141,7 +141,7 @@ func (c *Client) GetScimDirectory(
 
 	headers := core.MergeHeaders(c.header.Clone(), options.ToHeader())
 
-	var response *ssoreadygo.GetScimDirectoryResponse
+	var response *ssoreadygo.GetSCIMDirectoryResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -161,13 +161,13 @@ func (c *Client) GetScimDirectory(
 }
 
 // Updates a SCIM directory.
-func (c *Client) UpdateScimDirectory(
+func (c *Client) UpdateSCIMDirectory(
 	ctx context.Context,
 	// The ID of the SCIM directory to update.
 	id string,
-	request *ssoreadygo.ScimDirectory,
+	request *ssoreadygo.SCIMDirectory,
 	opts ...option.RequestOption,
-) (*ssoreadygo.UpdateScimDirectoryResponse, error) {
+) (*ssoreadygo.UpdateSCIMDirectoryResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://api.ssoready.com"
@@ -182,7 +182,7 @@ func (c *Client) UpdateScimDirectory(
 	headers := core.MergeHeaders(c.header.Clone(), options.ToHeader())
 	headers.Set("Content-Type", "application/json")
 
-	var response *ssoreadygo.UpdateScimDirectoryResponse
+	var response *ssoreadygo.UpdateSCIMDirectoryResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -213,12 +213,12 @@ func (c *Client) UpdateScimDirectory(
 //
 // SSOReady only stores the hash of these bearer tokens. If your customer has lost their copy, you must use this
 // endpoint to generate a new one.
-func (c *Client) RotateScimDirectoryBearerToken(
+func (c *Client) RotateSCIMDirectoryBearerToken(
 	ctx context.Context,
 	// The ID of the SCIM directory whose bearer token to rotate.
 	id string,
 	opts ...option.RequestOption,
-) (*ssoreadygo.RotateScimDirectoryBearerTokenResponse, error) {
+) (*ssoreadygo.RotateSCIMDirectoryBearerTokenResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://api.ssoready.com"
@@ -232,7 +232,7 @@ func (c *Client) RotateScimDirectoryBearerToken(
 
 	headers := core.MergeHeaders(c.header.Clone(), options.ToHeader())
 
-	var response *ssoreadygo.RotateScimDirectoryBearerTokenResponse
+	var response *ssoreadygo.RotateSCIMDirectoryBearerTokenResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
