@@ -2,7 +2,7 @@
 
 package management
 
-type ScimDirectoriesListScimDirectoriesRequest struct {
+type SCIMDirectoriesListSCIMDirectoriesRequest struct {
 	// The organization the SCIM directories belong to.
 	OrganizationID *string `json:"-" url:"organizationId,omitempty"`
 	// Pagination token. Leave empty to get the first page of results.

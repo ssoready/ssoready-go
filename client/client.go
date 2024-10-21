@@ -18,7 +18,7 @@ type Client struct {
 	header  http.Header
 
 	SAML       *saml.Client
-	Scim       *scim.Client
+	SCIM       *scim.Client
 	Management *managementclient.Client
 }
 
@@ -37,7 +37,7 @@ func NewClient(opts ...option.RequestOption) *Client {
 		),
 		header:     options.ToHeader(),
 		SAML:       saml.NewClient(opts...),
-		Scim:       scim.NewClient(opts...),
+		SCIM:       scim.NewClient(opts...),
 		Management: managementclient.NewClient(opts...),
 	}
 }

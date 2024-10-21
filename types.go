@@ -92,25 +92,25 @@ func (c *CreateSAMLConnectionResponse) String() string {
 	return fmt.Sprintf("%#v", c)
 }
 
-type CreateScimDirectoryResponse struct {
+type CreateSCIMDirectoryResponse struct {
 	// The updated SCIM directory.
-	ScimDirectory *ScimDirectory `json:"scimDirectory,omitempty" url:"scimDirectory,omitempty"`
+	SCIMDirectory *SCIMDirectory `json:"scimDirectory,omitempty" url:"scimDirectory,omitempty"`
 
 	extraProperties map[string]interface{}
 	_rawJSON        json.RawMessage
 }
 
-func (c *CreateScimDirectoryResponse) GetExtraProperties() map[string]interface{} {
+func (c *CreateSCIMDirectoryResponse) GetExtraProperties() map[string]interface{} {
 	return c.extraProperties
 }
 
-func (c *CreateScimDirectoryResponse) UnmarshalJSON(data []byte) error {
-	type unmarshaler CreateScimDirectoryResponse
+func (c *CreateSCIMDirectoryResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler CreateSCIMDirectoryResponse
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*c = CreateScimDirectoryResponse(value)
+	*c = CreateSCIMDirectoryResponse(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *c)
 	if err != nil {
@@ -122,7 +122,7 @@ func (c *CreateScimDirectoryResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (c *CreateScimDirectoryResponse) String() string {
+func (c *CreateSCIMDirectoryResponse) String() string {
 	if len(c._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(c._rawJSON); err == nil {
 			return value
@@ -305,25 +305,25 @@ func (g *GetSAMLRedirectURLResponse) String() string {
 	return fmt.Sprintf("%#v", g)
 }
 
-type GetScimDirectoryResponse struct {
+type GetSCIMDirectoryResponse struct {
 	// The requested SCIM directory.
-	ScimDirectory *ScimDirectory `json:"scimDirectory,omitempty" url:"scimDirectory,omitempty"`
+	SCIMDirectory *SCIMDirectory `json:"scimDirectory,omitempty" url:"scimDirectory,omitempty"`
 
 	extraProperties map[string]interface{}
 	_rawJSON        json.RawMessage
 }
 
-func (g *GetScimDirectoryResponse) GetExtraProperties() map[string]interface{} {
+func (g *GetSCIMDirectoryResponse) GetExtraProperties() map[string]interface{} {
 	return g.extraProperties
 }
 
-func (g *GetScimDirectoryResponse) UnmarshalJSON(data []byte) error {
-	type unmarshaler GetScimDirectoryResponse
+func (g *GetSCIMDirectoryResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler GetSCIMDirectoryResponse
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*g = GetScimDirectoryResponse(value)
+	*g = GetSCIMDirectoryResponse(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *g)
 	if err != nil {
@@ -335,7 +335,7 @@ func (g *GetScimDirectoryResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (g *GetScimDirectoryResponse) String() string {
+func (g *GetSCIMDirectoryResponse) String() string {
 	if len(g._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(g._rawJSON); err == nil {
 			return value
@@ -347,25 +347,25 @@ func (g *GetScimDirectoryResponse) String() string {
 	return fmt.Sprintf("%#v", g)
 }
 
-type GetScimGroupResponse struct {
+type GetSCIMGroupResponse struct {
 	// The requested SCIM group.
-	ScimGroup *ScimGroup `json:"scimGroup,omitempty" url:"scimGroup,omitempty"`
+	SCIMGroup *SCIMGroup `json:"scimGroup,omitempty" url:"scimGroup,omitempty"`
 
 	extraProperties map[string]interface{}
 	_rawJSON        json.RawMessage
 }
 
-func (g *GetScimGroupResponse) GetExtraProperties() map[string]interface{} {
+func (g *GetSCIMGroupResponse) GetExtraProperties() map[string]interface{} {
 	return g.extraProperties
 }
 
-func (g *GetScimGroupResponse) UnmarshalJSON(data []byte) error {
-	type unmarshaler GetScimGroupResponse
+func (g *GetSCIMGroupResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler GetSCIMGroupResponse
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*g = GetScimGroupResponse(value)
+	*g = GetSCIMGroupResponse(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *g)
 	if err != nil {
@@ -377,7 +377,7 @@ func (g *GetScimGroupResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (g *GetScimGroupResponse) String() string {
+func (g *GetSCIMGroupResponse) String() string {
 	if len(g._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(g._rawJSON); err == nil {
 			return value
@@ -389,25 +389,25 @@ func (g *GetScimGroupResponse) String() string {
 	return fmt.Sprintf("%#v", g)
 }
 
-type GetScimUserResponse struct {
+type GetSCIMUserResponse struct {
 	// The requested SCIM user.
-	ScimUser *ScimUser `json:"scimUser,omitempty" url:"scimUser,omitempty"`
+	SCIMUser *SCIMUser `json:"scimUser,omitempty" url:"scimUser,omitempty"`
 
 	extraProperties map[string]interface{}
 	_rawJSON        json.RawMessage
 }
 
-func (g *GetScimUserResponse) GetExtraProperties() map[string]interface{} {
+func (g *GetSCIMUserResponse) GetExtraProperties() map[string]interface{} {
 	return g.extraProperties
 }
 
-func (g *GetScimUserResponse) UnmarshalJSON(data []byte) error {
-	type unmarshaler GetScimUserResponse
+func (g *GetSCIMUserResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler GetSCIMUserResponse
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*g = GetScimUserResponse(value)
+	*g = GetSCIMUserResponse(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *g)
 	if err != nil {
@@ -419,7 +419,7 @@ func (g *GetScimUserResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (g *GetScimUserResponse) String() string {
+func (g *GetSCIMUserResponse) String() string {
 	if len(g._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(g._rawJSON); err == nil {
 			return value
@@ -577,9 +577,9 @@ func (l *ListSAMLConnectionsResponse) String() string {
 	return fmt.Sprintf("%#v", l)
 }
 
-type ListScimDirectoriesResponse struct {
+type ListSCIMDirectoriesResponse struct {
 	// The list of SCIM directories.
-	ScimDirectories []*ScimDirectory `json:"scimDirectories,omitempty" url:"scimDirectories,omitempty"`
+	SCIMDirectories []*SCIMDirectory `json:"scimDirectories,omitempty" url:"scimDirectories,omitempty"`
 	// Value to use as `pageToken` for the next page of data. Empty if there is no more data.
 	NextPageToken *string `json:"nextPageToken,omitempty" url:"nextPageToken,omitempty"`
 
@@ -587,17 +587,17 @@ type ListScimDirectoriesResponse struct {
 	_rawJSON        json.RawMessage
 }
 
-func (l *ListScimDirectoriesResponse) GetExtraProperties() map[string]interface{} {
+func (l *ListSCIMDirectoriesResponse) GetExtraProperties() map[string]interface{} {
 	return l.extraProperties
 }
 
-func (l *ListScimDirectoriesResponse) UnmarshalJSON(data []byte) error {
-	type unmarshaler ListScimDirectoriesResponse
+func (l *ListSCIMDirectoriesResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler ListSCIMDirectoriesResponse
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*l = ListScimDirectoriesResponse(value)
+	*l = ListSCIMDirectoriesResponse(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *l)
 	if err != nil {
@@ -609,7 +609,7 @@ func (l *ListScimDirectoriesResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListScimDirectoriesResponse) String() string {
+func (l *ListSCIMDirectoriesResponse) String() string {
 	if len(l._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(l._rawJSON); err == nil {
 			return value
@@ -621,9 +621,9 @@ func (l *ListScimDirectoriesResponse) String() string {
 	return fmt.Sprintf("%#v", l)
 }
 
-type ListScimGroupsResponse struct {
+type ListSCIMGroupsResponse struct {
 	// List of SCIM groups.
-	ScimGroups []*ScimGroup `json:"scimGroups,omitempty" url:"scimGroups,omitempty"`
+	SCIMGroups []*SCIMGroup `json:"scimGroups,omitempty" url:"scimGroups,omitempty"`
 	// Value to use as `pageToken` for the next page of data. Empty if there is no more data.
 	NextPageToken *string `json:"nextPageToken,omitempty" url:"nextPageToken,omitempty"`
 
@@ -631,17 +631,17 @@ type ListScimGroupsResponse struct {
 	_rawJSON        json.RawMessage
 }
 
-func (l *ListScimGroupsResponse) GetExtraProperties() map[string]interface{} {
+func (l *ListSCIMGroupsResponse) GetExtraProperties() map[string]interface{} {
 	return l.extraProperties
 }
 
-func (l *ListScimGroupsResponse) UnmarshalJSON(data []byte) error {
-	type unmarshaler ListScimGroupsResponse
+func (l *ListSCIMGroupsResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler ListSCIMGroupsResponse
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*l = ListScimGroupsResponse(value)
+	*l = ListSCIMGroupsResponse(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *l)
 	if err != nil {
@@ -653,7 +653,7 @@ func (l *ListScimGroupsResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListScimGroupsResponse) String() string {
+func (l *ListSCIMGroupsResponse) String() string {
 	if len(l._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(l._rawJSON); err == nil {
 			return value
@@ -665,9 +665,9 @@ func (l *ListScimGroupsResponse) String() string {
 	return fmt.Sprintf("%#v", l)
 }
 
-type ListScimUsersResponse struct {
+type ListSCIMUsersResponse struct {
 	// List of SCIM users.
-	ScimUsers []*ScimUser `json:"scimUsers,omitempty" url:"scimUsers,omitempty"`
+	SCIMUsers []*SCIMUser `json:"scimUsers,omitempty" url:"scimUsers,omitempty"`
 	// Value to use as `pageToken` for the next page of data. Empty if there is no more data.
 	NextPageToken *string `json:"nextPageToken,omitempty" url:"nextPageToken,omitempty"`
 
@@ -675,17 +675,17 @@ type ListScimUsersResponse struct {
 	_rawJSON        json.RawMessage
 }
 
-func (l *ListScimUsersResponse) GetExtraProperties() map[string]interface{} {
+func (l *ListSCIMUsersResponse) GetExtraProperties() map[string]interface{} {
 	return l.extraProperties
 }
 
-func (l *ListScimUsersResponse) UnmarshalJSON(data []byte) error {
-	type unmarshaler ListScimUsersResponse
+func (l *ListSCIMUsersResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler ListSCIMUsersResponse
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*l = ListScimUsersResponse(value)
+	*l = ListSCIMUsersResponse(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *l)
 	if err != nil {
@@ -697,7 +697,7 @@ func (l *ListScimUsersResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListScimUsersResponse) String() string {
+func (l *ListSCIMUsersResponse) String() string {
 	if len(l._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(l._rawJSON); err == nil {
 			return value
@@ -829,7 +829,7 @@ func (r *RedeemSAMLAccessCodeResponse) String() string {
 	return fmt.Sprintf("%#v", r)
 }
 
-type RotateScimDirectoryBearerTokenResponse struct {
+type RotateSCIMDirectoryBearerTokenResponse struct {
 	// The new, updated bearer token.
 	//
 	// Do not log or store this bearer token. It is an authentication token that your customer should securely input into
@@ -840,17 +840,17 @@ type RotateScimDirectoryBearerTokenResponse struct {
 	_rawJSON        json.RawMessage
 }
 
-func (r *RotateScimDirectoryBearerTokenResponse) GetExtraProperties() map[string]interface{} {
+func (r *RotateSCIMDirectoryBearerTokenResponse) GetExtraProperties() map[string]interface{} {
 	return r.extraProperties
 }
 
-func (r *RotateScimDirectoryBearerTokenResponse) UnmarshalJSON(data []byte) error {
-	type unmarshaler RotateScimDirectoryBearerTokenResponse
+func (r *RotateSCIMDirectoryBearerTokenResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler RotateSCIMDirectoryBearerTokenResponse
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*r = RotateScimDirectoryBearerTokenResponse(value)
+	*r = RotateSCIMDirectoryBearerTokenResponse(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *r)
 	if err != nil {
@@ -862,7 +862,7 @@ func (r *RotateScimDirectoryBearerTokenResponse) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-func (r *RotateScimDirectoryBearerTokenResponse) String() string {
+func (r *RotateSCIMDirectoryBearerTokenResponse) String() string {
 	if len(r._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(r._rawJSON); err == nil {
 			return value
@@ -941,7 +941,7 @@ func (s *SAMLConnection) String() string {
 	return fmt.Sprintf("%#v", s)
 }
 
-type ScimDirectory struct {
+type SCIMDirectory struct {
 	// Unique identifier for this SCIM directory.
 	ID *string `json:"id,omitempty" url:"id,omitempty"`
 	// The organization this SCIM directory belongs to.
@@ -951,7 +951,7 @@ type ScimDirectory struct {
 	// Base URL the Identity Provider uses to perform SCIM HTTP requests.
 	//
 	// SCIM base URLs are assigned by SSOReady, and need to be inputted into your customer's Identity Provider.
-	ScimBaseURL *string `json:"scimBaseUrl,omitempty" url:"scimBaseUrl,omitempty"`
+	SCIMBaseURL *string `json:"scimBaseUrl,omitempty" url:"scimBaseUrl,omitempty"`
 	// Whether this SCIM directory has a bearer token assigned.
 	//
 	// SSOReady only stores a hash of the bearer token. To get a bearer token value, you must rotate this SCIM directory's
@@ -962,17 +962,17 @@ type ScimDirectory struct {
 	_rawJSON        json.RawMessage
 }
 
-func (s *ScimDirectory) GetExtraProperties() map[string]interface{} {
+func (s *SCIMDirectory) GetExtraProperties() map[string]interface{} {
 	return s.extraProperties
 }
 
-func (s *ScimDirectory) UnmarshalJSON(data []byte) error {
-	type unmarshaler ScimDirectory
+func (s *SCIMDirectory) UnmarshalJSON(data []byte) error {
+	type unmarshaler SCIMDirectory
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*s = ScimDirectory(value)
+	*s = SCIMDirectory(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *s)
 	if err != nil {
@@ -984,7 +984,7 @@ func (s *ScimDirectory) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (s *ScimDirectory) String() string {
+func (s *SCIMDirectory) String() string {
 	if len(s._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(s._rawJSON); err == nil {
 			return value
@@ -996,11 +996,11 @@ func (s *ScimDirectory) String() string {
 	return fmt.Sprintf("%#v", s)
 }
 
-type ScimGroup struct {
+type SCIMGroup struct {
 	// Unique identifier for this SCIM group.
 	ID *string `json:"id,omitempty" url:"id,omitempty"`
 	// SCIM directory this SCIM group belongs to.
-	ScimDirectoryID *string `json:"scimDirectoryId,omitempty" url:"scimDirectoryId,omitempty"`
+	SCIMDirectoryID *string `json:"scimDirectoryId,omitempty" url:"scimDirectoryId,omitempty"`
 	// A human-friendly name for the SCIM group.
 	DisplayName *string `json:"displayName,omitempty" url:"displayName,omitempty"`
 	// Whether the SCIM group has been deleted or deprovisioned from its SCIM directory.
@@ -1019,17 +1019,17 @@ type ScimGroup struct {
 	_rawJSON        json.RawMessage
 }
 
-func (s *ScimGroup) GetExtraProperties() map[string]interface{} {
+func (s *SCIMGroup) GetExtraProperties() map[string]interface{} {
 	return s.extraProperties
 }
 
-func (s *ScimGroup) UnmarshalJSON(data []byte) error {
-	type unmarshaler ScimGroup
+func (s *SCIMGroup) UnmarshalJSON(data []byte) error {
+	type unmarshaler SCIMGroup
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*s = ScimGroup(value)
+	*s = SCIMGroup(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *s)
 	if err != nil {
@@ -1041,7 +1041,7 @@ func (s *ScimGroup) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (s *ScimGroup) String() string {
+func (s *SCIMGroup) String() string {
 	if len(s._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(s._rawJSON); err == nil {
 			return value
@@ -1053,11 +1053,11 @@ func (s *ScimGroup) String() string {
 	return fmt.Sprintf("%#v", s)
 }
 
-type ScimUser struct {
+type SCIMUser struct {
 	// Unique identifier for this SCIM user.
 	ID *string `json:"id,omitempty" url:"id,omitempty"`
 	// SCIM directory this SCIM user belongs to.
-	ScimDirectoryID *string `json:"scimDirectoryId,omitempty" url:"scimDirectoryId,omitempty"`
+	SCIMDirectoryID *string `json:"scimDirectoryId,omitempty" url:"scimDirectoryId,omitempty"`
 	// The SCIM user's email address.
 	Email *string `json:"email,omitempty" url:"email,omitempty"`
 	// Whether the SCIM user has been deleted or deprovisioned from its SCIM directory.
@@ -1072,17 +1072,17 @@ type ScimUser struct {
 	_rawJSON        json.RawMessage
 }
 
-func (s *ScimUser) GetExtraProperties() map[string]interface{} {
+func (s *SCIMUser) GetExtraProperties() map[string]interface{} {
 	return s.extraProperties
 }
 
-func (s *ScimUser) UnmarshalJSON(data []byte) error {
-	type unmarshaler ScimUser
+func (s *SCIMUser) UnmarshalJSON(data []byte) error {
+	type unmarshaler SCIMUser
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*s = ScimUser(value)
+	*s = SCIMUser(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *s)
 	if err != nil {
@@ -1094,7 +1094,7 @@ func (s *ScimUser) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (s *ScimUser) String() string {
+func (s *SCIMUser) String() string {
 	if len(s._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(s._rawJSON); err == nil {
 			return value
@@ -1237,25 +1237,25 @@ func (u *UpdateSAMLConnectionResponse) String() string {
 	return fmt.Sprintf("%#v", u)
 }
 
-type UpdateScimDirectoryResponse struct {
+type UpdateSCIMDirectoryResponse struct {
 	// The updated SCIM directory.
-	ScimDirectory *ScimDirectory `json:"scimDirectory,omitempty" url:"scimDirectory,omitempty"`
+	SCIMDirectory *SCIMDirectory `json:"scimDirectory,omitempty" url:"scimDirectory,omitempty"`
 
 	extraProperties map[string]interface{}
 	_rawJSON        json.RawMessage
 }
 
-func (u *UpdateScimDirectoryResponse) GetExtraProperties() map[string]interface{} {
+func (u *UpdateSCIMDirectoryResponse) GetExtraProperties() map[string]interface{} {
 	return u.extraProperties
 }
 
-func (u *UpdateScimDirectoryResponse) UnmarshalJSON(data []byte) error {
-	type unmarshaler UpdateScimDirectoryResponse
+func (u *UpdateSCIMDirectoryResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler UpdateSCIMDirectoryResponse
 	var value unmarshaler
 	if err := json.Unmarshal(data, &value); err != nil {
 		return err
 	}
-	*u = UpdateScimDirectoryResponse(value)
+	*u = UpdateSCIMDirectoryResponse(value)
 
 	extraProperties, err := core.ExtractExtraProperties(data, *u)
 	if err != nil {
@@ -1267,7 +1267,7 @@ func (u *UpdateScimDirectoryResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (u *UpdateScimDirectoryResponse) String() string {
+func (u *UpdateSCIMDirectoryResponse) String() string {
 	if len(u._rawJSON) > 0 {
 		if value, err := core.StringifyJSON(u._rawJSON); err == nil {
 			return value

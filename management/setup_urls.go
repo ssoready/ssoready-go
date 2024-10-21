@@ -8,5 +8,5 @@ type CreateSetupURLRequest struct {
 	// Whether the setup URL lets the user manage SAML connections.
 	CanManageSAML *bool `json:"canManageSaml,omitempty" url:"-"`
 	// Whether the setup URL lets the user manage SCIM directories.
-	CanManageScim *bool `json:"canManageScim,omitempty" url:"-"`
+	CanManageSCIM *bool `json:"canManageScim,omitempty" url:"-"`
 }

@@ -20,7 +20,7 @@ type Client struct {
 
 	Organizations   *organizations.Client
 	SAMLConnections *samlconnections.Client
-	ScimDirectories *scimdirectories.Client
+	SCIMDirectories *scimdirectories.Client
 	SetupURLs       *setupurls.Client
 }
 
@@ -40,7 +40,7 @@ func NewClient(opts ...option.RequestOption) *Client {
 		header:          options.ToHeader(),
 		Organizations:   organizations.NewClient(opts...),
 		SAMLConnections: samlconnections.NewClient(opts...),
-		ScimDirectories: scimdirectories.NewClient(opts...),
+		SCIMDirectories: scimdirectories.NewClient(opts...),
 		SetupURLs:       setupurls.NewClient(opts...),
 	}
 }
