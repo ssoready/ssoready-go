@@ -1,193 +1,103 @@
-# SSOReady Go Library
+# SSOReady-Go
 
-[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://github.com/fern-api/fern)
+`github.com/ssoready/ssoready-go` is a Go SDK for the
+[SSOReady](https://ssoready.com) API.
 
-The SSOReady Go library provides convenient access to the SSOReady API from Go.
+SSOReady is a set of open-source dev tools for implementing Enterprise SSO. You
+can use SSOReady to add SAML and SCIM support to your product this afternoon.
 
-## Requirements
+For example applications built using SSOReady-Python, check out:
 
-This module requires Go version >= 1.18.
+- [SSOReady Example App: Golang + net/http with SAML](https://github.com/ssoready/ssoready-example-app-golang-saml)
 
-# Installation
+## Installation
 
-Run the following command to use the ssoready Go library in your module:
+Run the following:
 
-```sh
+```bash
 go get github.com/ssoready/ssoready-go
 ```
 
 ## Usage
 
+This section provides a high-level overview of how SSOReady works, and how it's
+possible to implement SAML and SCIM in just an afternoon. For a more thorough
+introduction, visit the [SAML
+quickstart](https://ssoready.com/docs/saml/saml-quickstart) or the [SCIM
+quickstart](https://ssoready.com/docs/scim/scim-quickstart).
+
+The first thing you'll do is create a SSOReady client instance:
+
 ```go
 import (
-  "github.com/ssoready/ssoready-go"
   ssoreadyclient "github.com/ssoready/ssoready-go/client"
-  "github.com/ssoready/ssoready-go/option"
 )
 
-client := ssoreadyclient.NewClient(
-  option.WithAPIKey("<YOUR_API_KEY>"),
-)
-
-response, err := client.SAML.RedeemSAMLAccessCode(
-  context.TODO(),
-  &ssoready.RedeemSAMLAccessCodeRequest{
-    SAMLAccessCode: "saml_access_code...",
-  },
-)
+ssoreadyClient := ssoreadyclient.NewClient()
 ```
 
-## Optional Parameters
+### SAML in two lines of code
 
-This library models optional primitives and enum types as pointers. This is primarily meant to distinguish
-default zero values from explicit values (e.g. `false` for `bool` and `""` for `string`). A collection of
-helper functions are provided to easily map a primitive or enum to its pointer-equivalent (e.g. `ssoready.String`).
+SAML (aka "Enterprise SSO") consists of two steps: an _initiation_ step where
+you redirect your users to their corporate identity provider, and a _handling_
+step where you log them in once you know who they are.
 
-## Timeouts
-
-Setting a timeout for each individual request is as simple as using the standard `context` library. Setting
-a one second timeout for an individual API call looks like the following:
-
-```go
-ctx, cancel := context.WithTimeout(context.TODO(), time.Second)
-defer cancel()
-
-response, err := client.SAML.RedeemSAMLAccessCode(
-  ctx,
-  &ssoready.RedeemSAMLAccessCodeRequest{
-    SAMLAccessCode: "saml_access_code...",
-  },
-)
-```
-
-## Request Options
-
-A variety of request options are included to adapt the behavior of the library, which includes
-configuring authorization tokens, or providing your own instrumented `*http.Client`. Both of
-these options are shown below:
+To initiate logins, you'll use SSOReady's [Get SAML Redirect
+URL](https://ssoready.com/docs/api-reference/saml/get-saml-redirect-url)
+endpoint:
 
 ```go
-client := ssoreadyclient.NewClient(
-  option.WithAPIKey("<YOUR_API_KEY>"),
-  option.WithHTTPClient(
-    &http.Client{
-      Timeout: 5 * time.Second,
-    },
-  ),
-)
-```
-
-These request options can either be specified on the client so that they're applied on _every_
-request (shown above), or for an individual request like so:
-
-```go
-response, err := client.SAML.RedeemSAMLAccessCode(
-  ctx,
-  &ssoready.RedeemSAMLAccessCodeRequest{
-    SAMLAccessCode: "saml_access_code...",
-  },
-  option.WithAPIKey("<YOUR_API_KEY>"),
-)
-```
-
-> Providing your own `*http.Client` is recommended. Otherwise, the `http.DefaultClient` will be used,
-> and your client will wait indefinitely for a response (unless the per-request, context-based timeout
-> is used).
-
-## Automatic Retries
-
-The ssoready Go client is instrumented with automatic retries with exponential backoff. A request will be
-retried as long as the request is deemed retriable and the number of retry attempts has not grown larger
-than the configured retry limit (default: 2).
-
-A request is deemed retriable when any of the following HTTP status codes is returned:
-
-- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
-- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
-- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) (Internal Server Errors)
-
-You can use the `option.WithMaxAttempts` option to configure the maximum retry limit to
-your liking. For example, if you want to disable retries for the client entirely, you can
-set this value to 1 like so:
-
-```go
-client := ssoreadyclient.NewClient(
-  option.WithMaxAttempts(1),
-)
-```
-
-This can be done for an individual request, too:
-
-```go
-response, err := client.SAML.RedeemSAMLAccessCode(
-  ctx,
-  &ssoready.RedeemSAMLAccessCodeRequest{
-    SAMLAccessCode: "saml_access_code...",
-  },
-  option.WithMaxAttempts(1),
-)
-```
-
-## Errors
-
-Structured error types are returned from API calls that return non-success status codes. For example,
-you can check if the error was due to an unauthorized request (i.e. status code 401) with the following:
-
-```go
-response, err := client.SAML.RedeemSAMLAccessCode(
-  ctx,
-  &ssoready.RedeemSAMLAccessCodeRequest{
-    SAMLAccessCode: "saml_access_code...",
-  },
-)
+// this is how you implement a "Sign in with SSO" button
+getRedirectURLRes, err := ssoreadyClient.SAML.GetSAMLRedirectURL(r.Context(), &ssoready.GetSAMLRedirectURLRequest{
+	OrganizationExternalID: "...",
+})
 if err != nil {
-  if unauthorizedErr, ok := err.(*ssoready.UnauthorizedError);
-    // Do something with the unauthorized request ...
-  }
-  return err
+  panic(err)
 }
+
+// redirect the user to getRedirectURLRes.RedirectURL ...
 ```
 
-These errors are also compatible with the `errors.Is` and `errors.As` APIs, so you can access the error
-like so:
+You can use whatever your preferred ID is for organizations (you might call them
+"workspaces" or "teams") as your `OrganizationExternalID`. You configure those
+IDs inside SSOReady, and SSOReady handles keeping track of that organization's
+SAML and SCIM settings.
+
+To handle logins, you'll use SSOReady's [Redeem SAML Access
+Code](https://ssoready.com/docs/api-reference/saml/redeem-saml-access-code) endpoint:
 
 ```go
-response, err := client.SAML.RedeemSAMLAccessCode(
-  ctx,
-  &ssoready.RedeemSAMLAccessCodeRequest{
-    SAMLAccessCode: "saml_access_code...",
-  },
-)
+redeemRes, err := ssoreadyClient.SAML.RedeemSAMLAccessCode(r.Context(), &ssoready.RedeemSAMLAccessCodeRequest{
+    SAMLAccessCode: "saml_access_code_...",
+})
+```
+
+You configure the URL for your `/ssoready-callback` endpoint in SSOReady.
+
+### SCIM in one line of code
+
+SCIM (aka "Enterprise directory sync") is basically a way for you to get a list
+of your customer's employees offline.
+
+To get a customer's employees, you'll use SSOReady's [List SCIM
+Users](https://ssoready.com/docs/api-reference/scim/list-scim-users) endpoint:
+
+```go
+listSCIMUsersRes, err := ssoreadyClient.SCIM.ListSCIMUsers(r.Context(), &ssoready.SCIMListSCIMUsersRequest{
+    OrganizationExternalID: "...",
+})
 if err != nil {
-  var unauthorizedErr *ssoready.UnauthorizedError
-  if errors.As(err, unauthorizedErr) {
-    // Do something with the unauthorized request ...
-  }
-  return err
+	panic(err)
 }
-```
 
-If you'd like to wrap the errors with additional information and still retain the ability
-to access the type with `errors.Is` and `errors.As`, you can use the `%w` directive:
-
-```go
-response, err := client.SAML.RedeemSAMLAccessCode(
-  ctx,
-  &ssoready.RedeemSAMLAccessCodeRequest{
-    SAMLAccessCode: "saml_access_code...",
-  },
-)
-if err != nil {
-  return fmt.Errorf("failed to create application: %w", err)
+// create users from each scim user
+for _, scimUser := range listSCIMUsersRes.SCIMUsers {
+	// every scimUser has an ID, Email, Attributes, and Deleted
 }
 ```
 
 ## Contributing
 
-While we value open-source contributions to this SDK, this library is generated programmatically.
-Additions made directly to this library would have to be moved over to our generation code,
-otherwise they would be overwritten upon the next generated release. Feel free to open a PR as
-a proof of concept, but know that we will not be able to merge it as-is. We suggest opening
-an issue first to discuss with us!
-
-On the other hand, contributions to the `README.md` are always very welcome!
+Issues and PRs are more than welcome. Be advised that this library is largely
+autogenerated from [`ssoready/docs`](https://github.com/ssoready/docs). Most
+code changes ultimately need to be made there, not on this repo.
