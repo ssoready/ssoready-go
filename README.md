@@ -6,7 +6,7 @@
 SSOReady is a set of open-source dev tools for implementing Enterprise SSO. You
 can use SSOReady to add SAML and SCIM support to your product this afternoon.
 
-For example applications built using SSOReady-Python, check out:
+For example applications built using SSOReady-Go, check out:
 
 - [SSOReady Example App: Golang + net/http with SAML](https://github.com/ssoready/ssoready-example-app-golang-saml)
 
@@ -30,7 +30,8 @@ The first thing you'll do is create a SSOReady client instance:
 
 ```go
 import (
-  ssoreadyclient "github.com/ssoready/ssoready-go/client"
+	"github.com/ssoready/ssoready-go"
+	ssoreadyclient "github.com/ssoready/ssoready-go/client"
 )
 
 ssoreadyClient := ssoreadyclient.NewClient()
@@ -48,12 +49,10 @@ endpoint:
 
 ```go
 // this is how you implement a "Sign in with SSO" button
-getRedirectURLRes, err := ssoreadyClient.SAML.GetSAMLRedirectURL(r.Context(), &ssoready.GetSAMLRedirectURLRequest{
-	OrganizationExternalID: "...",
+getRedirectURLRes, err := ssoreadyClient.SAML.GetSAMLRedirectURL(ctx, &ssoready.GetSAMLRedirectURLRequest{
+    OrganizationExternalID: "...",
 })
-if err != nil {
-  panic(err)
-}
+if err != nil { ... }
 
 // redirect the user to getRedirectURLRes.RedirectURL ...
 ```
@@ -67,9 +66,11 @@ To handle logins, you'll use SSOReady's [Redeem SAML Access
 Code](https://ssoready.com/docs/api-reference/saml/redeem-saml-access-code) endpoint:
 
 ```go
-redeemRes, err := ssoreadyClient.SAML.RedeemSAMLAccessCode(r.Context(), &ssoready.RedeemSAMLAccessCodeRequest{
-    SAMLAccessCode: "saml_access_code_...",
+redeemRes, err := ssoreadyClient.SAML.RedeemSAMLAccessCode(ctx, &ssoready.RedeemSAMLAccessCodeRequest{
+	SAMLAccessCode: "saml_access_code_...",
 })
+
+// log the user in as redeemRes.Email inside redeemRes.OrganizationExternalID
 ```
 
 You configure the URL for your `/ssoready-callback` endpoint in SSOReady.
@@ -83,16 +84,14 @@ To get a customer's employees, you'll use SSOReady's [List SCIM
 Users](https://ssoready.com/docs/api-reference/scim/list-scim-users) endpoint:
 
 ```go
-listSCIMUsersRes, err := ssoreadyClient.SCIM.ListSCIMUsers(r.Context(), &ssoready.SCIMListSCIMUsersRequest{
-    OrganizationExternalID: "...",
+listSCIMUsersRes, err := ssoreadyClient.SCIM.ListSCIMUsers(ctx, &ssoready.SCIMListSCIMUsersRequest{
+	OrganizationExternalID: "...",
 })
-if err != nil {
-	panic(err)
-}
+if err != nil { ... }
 
 // create users from each scim user
-for _, scimUser := range listSCIMUsersRes.SCIMUsers {
-	// every scimUser has an ID, Email, Attributes, and Deleted
+for _, scimUser := range listSCIMUsersRes.SCIMUsers { 
+	// each scimUser has an ID, Email, Attributes, and Deleted
 }
 ```
 
