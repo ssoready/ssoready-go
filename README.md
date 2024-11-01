@@ -1,4 +1,8 @@
-# SSOReady-Go
+![](https://i.imgur.com/OhtkhbJ.png)
+
+# SSOReady-Go: SAML & SCIM for Golang
+
+[![Go Reference](https://pkg.go.dev/badge/github.com/ssoready/ssoready-go.svg)](https://pkg.go.dev/github.com/ssoready/ssoready-go)
 
 `github.com/ssoready/ssoready-go` is a Go SDK for the
 [SSOReady](https://ssoready.com) API.
